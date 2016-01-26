@@ -44,8 +44,8 @@ extension String{
          return false
       }
 
-      for index in zip((startIndex..<endIndex).reverse(), (str.startIndex..<str.endIndex).reverse()) where self[index.0] != str[index.1]{
-         return false
+      for index in zip((startIndex..<endIndex), (str.startIndex..<str.endIndex)).lazy.reverse() where self[index.0] != str[index.1]{
+          return false
       }
       return true
     }
