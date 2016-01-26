@@ -98,21 +98,37 @@ let noMatchedStrings = ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                         "xA target’s dependencies are modules that are required",
                         ]
 
+print("Start to run version 1")
+for i in (0..<10000){
+   for stringTuple in zip(targetStrings, matchedPrefixStrings){
+      stringTuple.0.hasPrefix(stringTuple.1)
+   }
 
-for stringTuple in zip(targetStrings, matchedPrefixStrings){
-   assert(stringTuple.0.hasPrefix(stringTuple.1) == true)
-   assert(stringTuple.0.hasPrefix2(stringTuple.1) == true)
-}
+   for stringTuple in zip(targetStrings, matchedSuffixStrings){
+      stringTuple.0.hasSuffix(stringTuple.1)
+   }
 
-for stringTuple in zip(targetStrings, matchedSuffixStrings){
-   assert(stringTuple.0.hasSuffix(stringTuple.1) == true)
-   assert(stringTuple.0.hasSuffix2(stringTuple.1) == true)
+   for stringTuple in zip(targetStrings, noMatchedStrings){
+      stringTuple.0.hasPrefix(stringTuple.1)
+      stringTuple.0.hasSuffix(stringTuple.1)
+   }
 }
+print("End of run version 1")
+print("Start to run version 2")
+for i in (0..<10000){
+   for stringTuple in zip(targetStrings, matchedPrefixStrings){
+      stringTuple.0.hasPrefix2(stringTuple.1)
+   }
 
-for stringTuple in zip(targetStrings, noMatchedStrings){
-   assert(stringTuple.0.hasPrefix(stringTuple.1) == false)
-   assert(stringTuple.0.hasPrefix2(stringTuple.1) == false)
-   assert(stringTuple.0.hasSuffix(stringTuple.1) == false)
-   assert(stringTuple.0.hasSuffix2(stringTuple.1) == false)
+   for stringTuple in zip(targetStrings, matchedSuffixStrings){
+      stringTuple.0.hasSuffix2(stringTuple.1)
+   }
+
+   for stringTuple in zip(targetStrings, noMatchedStrings){
+      stringTuple.0.hasPrefix2(stringTuple.1)
+      stringTuple.0.hasSuffix2(stringTuple.1)
+   }
 }
+print("End of run version 2")
+
 print("Hello, job finished")
